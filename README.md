@@ -1,12 +1,14 @@
 ## DrOctoTeensy
 A high performance framework for LED projects using node and Teensy
 
-#How it works
+[![N|Solid](https://github.com/aquaktus/DrOctoTeensy/blob/master/images/Screenshot_2017-10-25-17-28-55.png)](https://github.com/aquaktus/DrOctoTeensy/blob/master/images/Screenshot_2017-10-25-17-28-55.png)
+
+# How it works
 The teensy is an arduino compatible microcontroller that is used as the interface between the raw LEDS (WS2811) and the computer. It is tasked with listening to serial data from the usb and converting it into electrical signals for the addressable LED strips.
 These run at 800kHz and take a 24bit number for each color for the pixel:
-	0xFF << 16 (green)
-	0xFF << 8  (red)
-	0xFF       (blue)
+	- 0xFF << 16 (green)
+	- 0xFF << 8  (red)
+	- 0xFF       (blue)
 In depth formatting of the signal is done by the OctoWs2811 library from PJRC (really awesome!).
 
 The teensy uses 8 pins as independant simultaneous data chanels for leds, allowing for massive speedups. A technique called DMA (direc memory access) is also used to free up lots of time for the processor to handle other tasks such as recieving serial data.
