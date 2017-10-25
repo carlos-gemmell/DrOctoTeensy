@@ -1,9 +1,9 @@
-## DrOctoTeensy
+# DrOctoTeensy
 A high performance framework for LED projects using node and Teensy
 
 [![N|Solid](https://github.com/aquaktus/DrOctoTeensy/blob/master/images/Screenshot_2017-10-25-17-28-55.png)](https://github.com/aquaktus/DrOctoTeensy/blob/master/images/Screenshot_2017-10-25-17-28-55.png)
 
-# How it works
+## How it works
 The teensy is an arduino compatible microcontroller that is used as the interface between the raw LEDS (WS2811) and the computer. It is tasked with listening to serial data from the usb and converting it into electrical signals for the addressable LED strips.
 These run at 800kHz and take a 24bit number for each color for the pixel:
 	- 0xFF << 16 (green)
@@ -21,5 +21,7 @@ Formatting of the data for the node module is done as a flattned array where a p
 	x,y -> pix_array[y * width + x]
 
 Applications for this have already been developed such as a real time web client for all platforms to control the pannel through a web app using socket.io and express in Node. As well as a png converter.
+
+[![N|Solid](https://github.com/aquaktus/DrOctoTeensy/blob/master/images/IMG-20170816-WA0008.jpeg)](https://github.com/aquaktus/DrOctoTeensy/blob/master/images/IMG-20170816-WA0008.jpeg)
 
 Any comments are welcome.
