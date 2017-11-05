@@ -107,7 +107,7 @@ static void displayAsync(uv_work_t *req)
     for (int i = 0; i < 8; i++){
       for (int j = 0; j < (work->height)/8; j++){
         for(int k = 0; k < work->width; k++){
-          //cout << "started formatting" << ((work->height)/8)*i << endl;
+          // printf("Setting pixel in 8x300 array from flattned array at x: %d, y: %d, to %d\n", ((((work->height)/8)*i)+j), k, (j & 1) ? work->flatArray[(((((work->height)/8)*i)+j)*work->width)+k] : work->flatArray[(((((work->height)/8)*i)+j)*work->width)+((work->width - 1) - k)]);
           image[((work->width)*j) + k][i] = (j & 1) ? work->flatArray[(((((work->height)/8)*i)+j)*work->width)+k] : work->flatArray[(((((work->height)/8)*i)+j)*work->width)+((work->width - 1) - k)];
         }
       }
@@ -123,6 +123,7 @@ static void displayAsync(uv_work_t *req)
         green = gammatable[green];
         blue = gammatable[blue];
         image[i][j] = (green << 16) | (red << 8) | (blue);
+	printf("this is the GRB val from he 300x8 array i: %d, j: %d, val: %d\n", i, j, image[i][j]);
       }
     }
 
@@ -143,7 +144,7 @@ static void displayAsync(uv_work_t *req)
             c |= (1 << y);
           }
         }
-        //cout << bitset<8>(c) << offset << endl;
+        cout << bitset<8>(c) << " offset " << offset << endl;
         ledData[offset++] = c;
       }
     }
@@ -151,6 +152,7 @@ static void displayAsync(uv_work_t *req)
     file = fopen("/dev/ttyACM0","w");  //Opening device file
     //data[0] &= ~0x40;
     for (int i = 0; i < sizeof(ledData)/sizeof(ledData[0]); i++){
+      // usleep(10);
       fprintf(file,"%c",ledData[i]); //Writing to the file
       //fprintf(file,"%c",','); //To separate digits
     }
