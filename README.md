@@ -22,9 +22,6 @@ Formatting of the data for the node module is done as a flattned array where a p
 
 Applications for this have already been developed such as a real time web client for all platforms to control the pannel through a web app using socket.io and express in Node. As well as a png converter.
 
-[![N|Solid](https://github.com/aquaktus/DrOctoTeensy/blob/master/images/IMG-20170816-WA0008.jpeg)](https://github.com/aquaktus/DrOctoTeensy/blob/master/images/IMG-20170816-WA0008.jpeg)
-
-
 ## Setup
 ### If you just cool colors that move around
 This option is very good if you don't want anything attached to the Teensy and still gives you a mesmerising light show.
@@ -34,5 +31,8 @@ To run it, copy the contents of arduino/PlasmaAnimation.ino into the arduino edi
 If you want to use a computer to send video display info to the Teensy for custom animations, do the process above but with arduino/VideoDisplay.ino changing the settings to whatever your display requires ( current proportions are set to 60x40 ).
 The computer code is buggy at the moment as it uses native C++ file read/write functions to send data and there are still kinks to be worked out. But if you want to get knee deep in Node C++ addons, Scott Frees has a great blog [here](https://nodeaddons.com/) to use along side the module i made ( this will be probably removed in the future ).
 Alternatively, a version of the computer side sending code is currently in production implemented in pure __JS__ which should have better results.
+
+[![N|Solid](https://github.com/aquaktus/DrOctoTeensy/blob/master/images/IMG-20170816-WA0008.jpeg)](https://github.com/aquaktus/DrOctoTeensy/blob/master/images/IMG-20170816-WA0008.jpeg)
+
 
 Comments welcome!
