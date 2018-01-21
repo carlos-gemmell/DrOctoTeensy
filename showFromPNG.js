@@ -6,7 +6,7 @@ var fs = require('fs');
 var PNG = require('pngjs').PNG;
 
 console.time("load");
-fs.createReadStream('images/active.png')
+fs.createReadStream('images/lightning.png')
   .pipe(new PNG({
     filterType: 4
   }))

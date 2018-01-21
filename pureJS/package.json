@@ -10,6 +10,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+<<<<<<< HEAD
     "randomstring": "^1.1.5"
+=======
+    "serialport": "^6.0.4"
+>>>>>>> 120e2d28092a83c11a06aad3f6663b63d74f869f
   }
 }
