@@ -20,8 +20,9 @@ fs.createReadStream('images/active.png')
       for (var x = 0; x < this.width; x++) {
 	var idx = (this.width * y + x) << 2;
 	var pixel = this.data[idx] << 16 | this.data[idx+1] << 8 | this.data[idx+2];
-	console.log("pixel pos x:i ", x, " y: ", y, " [",this.data[idx].toString(16), this.data[idx+1].toString(16), this.data[idx+2].toString(16), "]", "->", pixel);
+	// console.log("pixel pos x:i ", x, " y: ", y, " [",this.data[idx].toString(16), this.data[idx+1].toString(16), this.data[idx+2].toString(16), "]", "->", pixel);
 	// if(x == 0 && y < 6) pixel=0x000000;
+	// pixel=0x000000;
 	arr[getCoord(x,y)] = pixel;
 
       }

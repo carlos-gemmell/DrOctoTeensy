@@ -11,8 +11,7 @@ DEFS_Debug := \
 	'-D_FILE_OFFSET_BITS=64' \
 	'-DBUILDING_NODE_EXTENSION' \
 	'-DDEBUG' \
-	'-D_DEBUG' \
-	'-DV8_ENABLE_CHECKS'
+	'-D_DEBUG'
 
 # Flags passed to all source files.
 CFLAGS_Debug := \
@@ -21,7 +20,6 @@ CFLAGS_Debug := \
 	-Wall \
 	-Wextra \
 	-Wno-unused-parameter \
-	-m64 \
 	-Wall \
 	-std=c++11 \
 	-g \
@@ -37,10 +35,10 @@ CFLAGS_CC_Debug := \
 	-std=gnu++0x
 
 INCS_Debug := \
-	-I/home/aquaktus/.node-gyp/8.0.0/include/node \
-	-I/home/aquaktus/.node-gyp/8.0.0/src \
-	-I/home/aquaktus/.node-gyp/8.0.0/deps/uv/include \
-	-I/home/aquaktus/.node-gyp/8.0.0/deps/v8/include
+	-I/home/pi/.node-gyp/6.11.3/include/node \
+	-I/home/pi/.node-gyp/6.11.3/src \
+	-I/home/pi/.node-gyp/6.11.3/deps/uv/include \
+	-I/home/pi/.node-gyp/6.11.3/deps/v8/include
 
 DEFS_Release := \
 	'-DNODE_GYP_MODULE_NAME=DrOcto' \
@@ -58,7 +56,6 @@ CFLAGS_Release := \
 	-Wall \
 	-Wextra \
 	-Wno-unused-parameter \
-	-m64 \
 	-Wall \
 	-std=c++11 \
 	-O3 \
@@ -74,10 +71,10 @@ CFLAGS_CC_Release := \
 	-std=gnu++0x
 
 INCS_Release := \
-	-I/home/aquaktus/.node-gyp/8.0.0/include/node \
-	-I/home/aquaktus/.node-gyp/8.0.0/src \
-	-I/home/aquaktus/.node-gyp/8.0.0/deps/uv/include \
-	-I/home/aquaktus/.node-gyp/8.0.0/deps/v8/include
+	-I/home/pi/.node-gyp/6.11.3/include/node \
+	-I/home/pi/.node-gyp/6.11.3/src \
+	-I/home/pi/.node-gyp/6.11.3/deps/uv/include \
+	-I/home/pi/.node-gyp/6.11.3/deps/v8/include
 
 OBJS := \
 	$(obj).target/$(TARGET)/LEDDisplay_node.o
@@ -108,13 +105,11 @@ $(obj).$(TOOLSET)/$(TARGET)/%.o: $(obj)/%.cc FORCE_DO_CMD
 ### Rules for final target.
 LDFLAGS_Debug := \
 	-pthread \
-	-rdynamic \
-	-m64
+	-rdynamic
 
 LDFLAGS_Release := \
 	-pthread \
-	-rdynamic \
-	-m64
+	-rdynamic
 
 LIBS :=
 
