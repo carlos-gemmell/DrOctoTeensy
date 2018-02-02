@@ -34,20 +34,20 @@ reader.on('parsed', function(data) {
 
   arr[getCoord(59,0)] = 0xFF00FF;
 
-  conv.serialize(60,40,arr,function(){
+  conv.serialize(60,40,arr,function(serialString){
     console.log("done serializing!");
+    port.write(serialString, function(err) {
+      if (err) {
+        return console.log('Error on write: ', err.message);
+      }
+      console.log('message written to Teensy');
+    });
   });
 
   console.log("Image processing time:");
   console.timeEnd("process");
 });
 
-port.write('main screen turn on', function(err) {
-  if (err) {
-    return console.log('Error on write: ', err.message);
-  }
-  console.log('message written');
-});
 
 // Open errors will be emitted as an error event
 port.on('error', function(err) {

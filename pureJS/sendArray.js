@@ -24,7 +24,8 @@ exports.serialize = function(width, height, arr, cb){
 
   console.log(getDim(multi_channel_pixel_array))
 
-  serial_string = "";
+  serial_string = "*¨a";          // these are the first bytes to send to the teensy, they correspond to the framerate of the teensy, but at the moment they are static
+
   var count = 0;
 
   for(var i = 0; i < multi_channel_pixel_array.length; i++){
@@ -46,6 +47,7 @@ exports.serialize = function(width, height, arr, cb){
   }
 
   console.log("count:", count);
+
 
   cb(serial_string);
 }
