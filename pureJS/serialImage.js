@@ -1,6 +1,6 @@
 var SerialPort = require('serialport');
 var port = new SerialPort('/dev/ttyACM0');
-var conv = require('./sendArray');
+var conv = require('./arrayConverter');
 var fs = require('fs');
 var PNG = require('pngjs').PNG;
 
