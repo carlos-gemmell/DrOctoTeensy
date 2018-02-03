@@ -10,12 +10,23 @@ exports.serialize = function(width, height, arr, cb){
     gammaTable.push(Math.pow(i/255.0, gamma) * 255.0 + 0.5);
   }
 
+  for(var i = 0; i < arr.length; i++){
+      var red = (arr[i] & 0xFF0000) >> 16;
+      var green = (arr[i] & 0x00FF00) >> 8;
+      var blue = (arr[i] & 0x0000FF);
+      red = gammaTable[red];
+      green = gammaTable[green];
+      blue = gammaTable[blue];
+      arr[i] = (green << 16) | (red << 8) | (blue);
+  }
+
   // Straighten the pixel array which has fliped rows relative to the chanel array.
   // We repeat this for however many chanels there are, in our case 8.
   var channel_image = new Array(8);
   for (var channel = 0; channel < channel_image.length; channel++){
     var amountPixels = width * height / 8;
     var section = arr.slice(channel * amountPixels, (channel + 1) * amountPixels);
+    console.log(JSON.stringify(section))
     channel_image[channel] = ironChanel(section, width);
   }
 
@@ -24,7 +35,7 @@ exports.serialize = function(width, height, arr, cb){
 
   console.log(getDim(multi_channel_pixel_array))
 
-  serial_string = "*¨a";          // these are the first bytes to send to the teensy, they correspond to the framerate of the teensy, but at the moment they are static
+  serial_array = [42 , 97, 168];          // these are the first bytes to send to the teensy, they correspond to the framerate of the teensy, but at the moment they are static
 
   var count = 0;
 
@@ -37,19 +48,19 @@ exports.serialize = function(width, height, arr, cb){
           c |= (1 << y);
         }
       }
-      console.log(hex2bin(c));
+      // console.log(hex2bin(c));
       if(c == 0x00){
         count++;
       }
-      serial_string += String.fromCharCode(c);
+      serial_array.push(c);
     }
-    console.log("----------------", i);
+    // console.log("----------------", i);
   }
 
-  console.log("count:", count);
+  // console.log("count:", count);
 
 
-  cb(serial_string);
+  cb(serial_array);
 }
 
 function hex2bin(hex){
@@ -66,10 +77,10 @@ function ironChanel(lines, width){
   for(var i = 0; i < nbrLines; i++){
     if(i%2 == 0){
       // Flip the even rows since the Teensy is on the left side of the display
-      ironed = ironed.concat(lines.slice(0,width).reverse());
+      ironed = ironed.concat(lines.slice(width * i,width * (i+1)).reverse());
     }
     else {
-      ironed = ironed.concat(lines.slice(0,width));
+      ironed = ironed.concat(lines.slice(width * i,width * (i+1)));
     }
   }
   return ironed;
