@@ -10,15 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-<<<<<<< HEAD
     "fs": "0.0.1-security",
     "pngjs": "^3.3.1",
-=======
-<<<<<<< HEAD
-    "randomstring": "^1.1.5"
-=======
->>>>>>> 143b8c4442225360fdf7cdbb276bf18661446482
     "serialport": "^6.0.4"
->>>>>>> 120e2d28092a83c11a06aad3f6663b63d74f869f
   }
 }
