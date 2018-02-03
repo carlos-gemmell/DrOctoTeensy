@@ -6,7 +6,7 @@ var fs = require('fs');
 var PNG = require('pngjs').PNG;
 
 console.time("load");
-fs.createReadStream('images/lightning.png')
+fs.createReadStream('images/active.png')
   .pipe(new PNG({
     filterType: 4
   }))
@@ -41,4 +41,3 @@ sending = true;
 function getCoord(x,y){
   return y * 60 + x;
 }
-

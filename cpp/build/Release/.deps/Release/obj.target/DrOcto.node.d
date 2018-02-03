@@ -1,1 +1,1 @@
-cmd_Release/obj.target/DrOcto.node := g++ -shared -pthread -rdynamic  -Wl,-soname=DrOcto.node -o Release/obj.target/DrOcto.node -Wl,--start-group Release/obj.target/DrOcto/LEDDisplay_node.o -Wl,--end-group 
+cmd_Release/obj.target/DrOcto.node := g++ -shared -pthread -rdynamic -m64  -Wl,-soname=DrOcto.node -o Release/obj.target/DrOcto.node -Wl,--start-group Release/obj.target/DrOcto/LEDDisplay_node.o -Wl,--end-group 
