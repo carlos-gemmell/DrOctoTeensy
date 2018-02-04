@@ -52,13 +52,13 @@ function displayImageFromFile(image_string){                 // timer used to lo
 
 
 // Open errors will be emitted as an error event
-port.on('error', function(err) {
-  console.log('Error: ', err.message);
-});
-
-port.on('data', function (data) {
-  console.log('Data:', JSON.stringify(data.toString('utf8').split('').map(x => x.charCodeAt(0))));
-});
+// port.on('error', function(err) {
+//   console.log('Error: ', err.message);
+// });
+//
+// port.on('data', function (data) {
+//   console.log('Data:', JSON.stringify(data.toString('utf8').split('').map(x => x.charCodeAt(0))));
+// });
 
 function getCoord(x,y){
   return y * 60 + x;
