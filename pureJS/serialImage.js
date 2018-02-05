@@ -5,20 +5,20 @@ var fs = require('fs');
 var PNG = require('pngjs').PNG;
 
 
-console.time("load");
+// console.time("load");
 exports.displayImageFromFile = function displayImageFromFile(image_string, cb = ()=>{}){                 // timer used to log image loading time
-  console.log("Creating read stream");
+  // console.log("Creating read stream");
   var reader = fs.createReadStream(__dirname + image_string).pipe(new PNG({filterType: 4}));            // Opening file and procede to adding handlers
-  console.log("Read stream created");
+  // console.log("Read stream created");
 
   reader.on('error', function(err){                         // error handleing when reading file, unsure if properly working though
     console.log("Pipe error:", err);
   });
 
   reader.on('parsed', function(data) {
-    console.log("Image loading time:");
-    console.timeEnd("load");
-    console.time("process");
+    // console.log("Image loading time:");
+    // console.timeEnd("load");
+    // console.time("process");
 
     var arr = Array(2400).fill(0x000000);
 
@@ -34,20 +34,20 @@ exports.displayImageFromFile = function displayImageFromFile(image_string, cb = 
     // arr[getCoord(30,7)] = 0xFF00FF;
 
     conv.serialize(60,40,arr,function(serialString){
-      console.log("done serializing!");
-      console.log("Int array: ");
-      console.log(JSON.stringify(serialString));
+      // console.log("done serializing!");
+      // console.log("Int array: ");
+      // console.log(JSON.stringify(serialString));
       port.write(serialString, function(err) {
         if (err) {
           return console.log('Error on write: ', err.message);
         }
-        console.log('message written to Teensy');
+        // console.log('message written to Teensy');
         setTimeout(cb, 50);
       });
     });
 
-    console.log("Image processing time:");
-    console.timeEnd("process");
+    // console.log("Image processing time:");
+    // console.timeEnd("process");
   });
 }
 
@@ -71,6 +71,6 @@ function hex2bin(hex){
 
 if (require.main === module) {
   var image_string = (process.argv.length > 2) ? "/"+process.argv[2] : '/../images/active.png';
-  console.log("Searching for PNG at:", image_string);
+  // console.log("Searching for PNG at:", image_string);
     displayImageFromFile(image_string);
 }
