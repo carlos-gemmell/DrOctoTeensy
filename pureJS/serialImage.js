@@ -6,7 +6,7 @@ var PNG = require('pngjs').PNG;
 
 
 console.time("load");
-function displayImageFromFile(image_string){                 // timer used to log image loading time
+exports.displayImageFromFile = function displayImageFromFile(image_string, cb = ()=>{}){                 // timer used to log image loading time
   console.log("Creating read stream");
   var reader = fs.createReadStream(__dirname + image_string).pipe(new PNG({filterType: 4}));            // Opening file and procede to adding handlers
   console.log("Read stream created");
@@ -42,6 +42,7 @@ function displayImageFromFile(image_string){                 // timer used to lo
           return console.log('Error on write: ', err.message);
         }
         console.log('message written to Teensy');
+        setTimeout(cb, 50);
       });
     });
 

@@ -26,14 +26,14 @@ exports.serialize = function(width, height, arr, cb){
   for (var channel = 0; channel < channel_image.length; channel++){
     var amountPixels = width * height / 8;
     var section = arr.slice(channel * amountPixels, (channel + 1) * amountPixels);
-    console.log(JSON.stringify(section))
+    // console.log(JSON.stringify(section))
     channel_image[channel] = ironChanel(section, width);
   }
 
   // This is a heavy opperation -> 4+ms!!!!!!!
   var multi_channel_pixel_array = transpose(channel_image);
 
-  console.log(getDim(multi_channel_pixel_array))
+  // console.log(getDim(multi_channel_pixel_array))
 
   serial_array = [42 , 97, 168];          // these are the first bytes to send to the teensy, they correspond to the framerate of the teensy, but at the moment they are static
 
