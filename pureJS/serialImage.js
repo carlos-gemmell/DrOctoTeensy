@@ -42,7 +42,7 @@ exports.displayImageFromFile = function displayImageFromFile(image_string, cb = 
           return console.log('Error on write: ', err.message);
         }
         // console.log('message written to Teensy');
-        setTimeout(cb, 200);
+        setTimeout(cb, 60);
       });
     });
 
