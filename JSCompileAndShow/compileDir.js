@@ -2,6 +2,7 @@ var fs = require('fs');
 var compileSingle = require('./compileSingle');
 
 var loop = false;
+var reversed = false;
 
 if (process.argv.length <= 2) {
     console.log("Usage: " + __filename + " path/to/directory");
@@ -9,6 +10,14 @@ if (process.argv.length <= 2) {
 }
 
 var path = process.argv[2];
+
+var params = process.argv.slice(3);
+
+for(var i = 0; i < params.length; i++){
+  if(params[i] == '-reversed'){
+    var reversed = true;
+  }
+}
 
 if (!fs.existsSync(path)){
     console.log("No directory found at:", path);
@@ -26,7 +35,7 @@ fs.readdir(path, function(err, items) {
 });
 
 function recursiveDisplay(i, items, loop){
-  compileSingle.compileImageFromFile('/' + path + items[i], dir,()=>{
+  compileSingle.compileImageFromFile('/' + path + items[i], dir, reversed, ()=>{
     if((loop ? (i+1)%items.length : i+1) < items.length){
       recursiveDisplay((i+1)%items.length, items, loop);
     }

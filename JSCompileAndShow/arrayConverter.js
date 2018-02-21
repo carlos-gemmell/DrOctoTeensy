@@ -1,7 +1,7 @@
 // This function takes charge of returning a character array in compliance with what the Teensy wants to recieve
 // It is still unclear wether the formatting characters at the start of the byte stream are to be included in the function.
 // However, converting a PNG into a file of this format could prove to save computational time.
-exports.serialize = function(width, height, arr, cb){
+exports.serialize = function(width, height, arr, reversed, cb){
 
   // Creating the gamma table to correct the colors of the pannel
   var gammaTable = [];
@@ -27,7 +27,7 @@ exports.serialize = function(width, height, arr, cb){
     var amountPixels = width * height / 8;
     var section = arr.slice(channel * amountPixels, (channel + 1) * amountPixels);
     // console.log(JSON.stringify(section))
-    channel_image[channel] = ironChanel(section, width);
+    channel_image[channel] = ironChanel(section, width, reversed);
   }
 
   // This is a heavy opperation -> 4+ms!!!!!!!
@@ -70,12 +70,12 @@ function hex2bin(hex){
 // This function takes a chanel straight from the pixel array and returnes the same array
 // but with the even rows fliped since the chanels are daisy chained and zig-zag,
 // where as the pixel array loops round to keep indexing simple.
-function ironChanel(lines, width){
+function ironChanel(lines, width, reversed){
   var nbrLines = lines.length / width;
 
   var ironed = [];
   for(var i = 0; i < nbrLines; i++){
-    if(i%2 == 0){
+    if((i%2 == 0 && !reversed) || (i%2 == 1 && reversed)){
       // Flip the even rows since the Teensy is on the left side of the display
       ironed = ironed.concat(lines.slice(width * i,width * (i+1)).reverse());
     }

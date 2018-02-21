@@ -2,7 +2,7 @@ var fs = require('fs');
 var conv = require('./arrayConverter');
 var PNG = require('pngjs').PNG;
 
-exports.compileImageFromFile = function compileImageFromFile(image_string, outputFolder, cb = ()=>{}){                 // timer used to log image loading time
+exports.compileImageFromFile = function compileImageFromFile(image_string, outputFolder, reversed, cb = ()=>{}){                 // timer used to log image loading time
   // console.log("Creating read stream");
   var reader = fs.createReadStream(__dirname + image_string).pipe(new PNG({filterType: 4}));            // Opening file and procede to adding handlers
   // console.log("Read stream created");
@@ -29,7 +29,7 @@ exports.compileImageFromFile = function compileImageFromFile(image_string, outpu
 
     // arr[getCoord(30,7)] = 0xFF00FF;
 
-    conv.serialize(60,40,arr,function(serialString){
+    conv.serialize(60,40,arr, reversed, function(serialString){
       // console.log("done serializing!");
       // console.log("Int array: ");
       // console.log(JSON.stringify(serialString));
